@@ -79,6 +79,40 @@ volleyballproject/
 
 5. **Open your browser** and go to: [http://127.0. 0.1:8000/](http://127.0.0.1:8000/)
 
+## Run with Docker
+
+1. **Open a terminal** and go to the project folder:
+   ```
+   cd "C:\Users\Administrator\Desktop\New folder (4)\EECE430Sp25-MohammadJawad"
+   ```
+
+2. **Build the Docker image:**
+   ```
+   docker build -t volleysite-app .
+   ```
+
+3. **Run the container:**
+   ```
+   docker run --rm -p 8000:8000 --name volleysite-app volleysite-app
+   ```
+
+4. **Open your browser** and go to: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+If port `8000` is already in use, stop the other container first:
+
+```
+docker stop volleysite-app-check
+docker rm volleysite-app-check
+```
+
+Or run this container on a different host port:
+
+```
+docker run --rm -p 8001:8000 --name volleysite-app volleysite-app
+```
+
+Then open: [http://127.0.0.1:8001/](http://127.0.0.1:8001/)
+
 ## Manual Testing Steps
 
 1. Go to `http://127.0.0.1:8000/` → You should see an empty player list.
