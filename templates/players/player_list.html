@@ -1,0 +1,47 @@
+{% extends "players/base.html" %}
+
+{% block title %}All Players{% endblock %}
+
+{% block content %}
+<h1>Volleyball Player List</h1>
+<p style="margin-bottom: 16px;">
+    <a href="{% url 'add_player' %}" class="btn btn-success">+ Add New Player</a>
+</p>
+
+{% if players %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Date Joined</th>
+            <th>Position</th>
+            <th>Salary / Payment</th>
+            <th>Contact Person</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for player in players %}
+        <tr>
+            <td>{{ player.player_id }}</td>
+            <td>{{ player.name }}</td>
+            <td>{{ player.date_joined }}</td>
+            <td>{{ player.position }}</td>
+            <td>${{ player.salary }}</td>
+            <td>{{ player.contact_person }}</td>
+            <td class="actions">
+                <a href="{% url 'view_player' player.pk %}" class="btn btn-primary">View</a>
+                <a href="{% url 'edit_player' player.pk %}" class="btn btn-warning">Edit</a>
+                <a href="{% url 'delete_player' player.pk %}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="empty-msg">
+    <p>No players found. Click "Add New Player" to get started!</p>
+</div>
+{% endif %}
+{% endblock %}
